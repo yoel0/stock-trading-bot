@@ -137,6 +137,17 @@ for i in range(len(stock_list[28:])):
     else:
         final_list.append(each_stock)
 
+# for each_stock in final_list:
+#     print(parse_stock_data(each_stock))
+#     time.sleep(1)
+
 for each_stock in final_list:
-    print(parse_stock_data(each_stock))
-    time.sleep(1)
+    x = parse_stock_data(each_stock)
+    driver.get(f"https://wallmine.com/{x.get('exchange')}/{x.get('symbol')}")
+    if x.get('symbol') in driver.page_source:
+        print(f"We are on {x.get('company_name')} stock page")
+        print('---')
+    print(x)
+    print('==================================')
+    time.sleep(2)
+driver.quit()
